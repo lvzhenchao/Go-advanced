@@ -37,3 +37,12 @@ func main() {
 		log.Println("Error in encoding json")
 	}
 }
+
+//解码流
+//func NewDecoder(r io.Reader) *Decoder
+//func (dec *Decoder) Decode(v interface{}) error
+
+//编码
+//func NewEncoder(w io.Writer) *Encoder
+//func (enc *Encoder) Encode(v interface{})
+
