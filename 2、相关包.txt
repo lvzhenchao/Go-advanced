@@ -87,6 +87,26 @@
 4、ioutil包
     是IO包的工具包，便于IO操作的
 
+    func NopCloser(r io.Reader) io.ReadCloser
+    func ReadAll(r io.Reader) ([]byte, error)
+    func ReadFile(filename string) ([]byte, error)
+    func WriteFile(filename string, data []byte, perm os.FileMode) error
+    func ReadDir(dirname string) ([]os.FileInfo, error)
+    func TempDir(dir, prefix string) (name string, err error)
+    func TempFile(dir, prefix string) (f *os.File, err error)
+
+    注：只要实现了io.Reader这个接口的方法，都可以调用
+    例如
+        s2 = "内容"
+        r1 := strings.newReader(s2)
+        data, err := ioutil.ReadAll(r1)
+
+5、runtime包
+    untime包提供和go运行时环境的互操作
+    相当于java的虚拟机
+
+6、time包
+    
 
 
 
