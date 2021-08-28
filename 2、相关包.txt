@@ -1,0 +1,85 @@
+
+1、bufio包
+    作用：主要用于IO操作，可以大幅度提高文件读写的效率
+    通过缓冲（分配一块内存）来提高效率，读写都先在缓冲区中，最后再读写文件；
+    缓冲区的设计主要是为了存储多次的写入
+
+    Reader对象
+    bufio.Reader是bufio对io.Reader的封装
+    type Reader struct {
+    	buf          []byte
+    	rd           io.Reader // reader provided by the client
+    	r, w         int       // buf read and write positions
+    	err          error
+    	lastByte     int // last byte read for UnreadByte; -1 means invalid
+    	lastRuneSize int // size of last rune read for UnreadRune; -1 means invalid
+    }
+
+    bufio.read(p []byte)相当于读取大小len(p)的内容
+
+    //有两个方法获取reader对象
+    func NewReader(rd io.Reader) *Reader
+    func NewReaderSize(rd io.Reader, size int) *Reader
+
+
+    Writer对象
+    bufio.Writer是bufio对io.Writer的封装
+    type Writer struct {
+    	err error
+    	buf []byte
+    	n   int
+    	wr  io.Writer
+    }
+
+    bufio.write(p []type)
+
+    //获取writer对象
+    func NewWriter(w io.Writer) *Writer
+    func NewWriterSize(w io.Writer, size int) *Writer
+
+2、OS包，大多都是和操作系统相关的
+    file类是在OS包中，封装了底层的文件描述符和相关信息，同时封装了Read和Write的实现
+
+    1>获取文件相关信息
+        type FileInfo interface {
+            Name() string       // 文件的名字（不含扩展名）
+            Size() int64        // 普通文件返回值表示其大小；其他文件的返回值含义各系统不同
+            Mode() FileMode     // 文件的模式位
+            ModTime() time.Time // 文件的修改时间
+            IsDir() bool        // 等价于Mode().IsDir()
+            Sys() interface{}   // 底层数据来源（可以返回nil）
+        }
+
+        //获取文件info对象
+        func Stat(name string) (fi FileInfo, err error)
+        func Lstat(name string) (fi FileInfo, err error)
+
+    2>创建、删除文件夹
+    3>创建、删除文件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
