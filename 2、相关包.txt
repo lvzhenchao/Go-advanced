@@ -56,6 +56,36 @@
 
     2>创建、删除文件夹
     3>创建、删除文件
+    4>打开文件
+        os.open()//只读的
+        os.openfile()//参数加上可写的
+    5>复制
+        os.copy()
+
+3、I/O包
+    读写操作（流操作）、数据通信的通道
+
+    //读接口
+    type Reader interface {
+        Read(p []byte) (n int, err error)
+    }
+    //写接口
+    type Writer interface {
+        Write(p []byte) (n int, err error)
+    }
+
+    os包实现了这两个接口；所以也有这两个接口的具体实现方法read()、write()
+
+    1>步骤
+        打开文件
+            file := os.open()
+        读写操作
+            file.read()、file.write()
+        关闭
+            file.close()
+
+4、ioutil包
+    是IO包的工具包，便于IO操作的
 
 
 
