@@ -62,6 +62,23 @@
     reflect.TypeOf()来获取pair中type
     reflect.ValueOf()来获取pair中value
 
+7、静态类型和动态类型
+    编译时就知道变量类型的是静态类型
+
+    运行时才知道的变量类型叫做动态类型
+        var A interface{}//静态类型interface{}
+        A = 10           //静态类型interface{} 动态为int
+        A = "string"     //静态类型interface{} 动态为string
+        var M *int
+        A = M            //A的值可以改变
+
+8、反射规则
+    反射可以从接口值得到反射对象
+        检测存储在interface中的类型和值机制；通过TypeOf和ValueOf得到
+    反射可以从反射对象获得接口值
+        将ValueOf的返回值通过interface()函数反向转变成interface变量
+    操作一个反射变量，则其值必须可以修改
+
 
 
 

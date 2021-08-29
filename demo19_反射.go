@@ -18,4 +18,17 @@ func main() {
 	fmt.Println("type:", v.Type())
 	fmt.Println("value:", v.Float())
 
+	fmt.Println("----------------")
+	var num float64 = 1.23
+	//从接口值得到反射对象
+	value := reflect.ValueOf(num)
+	//反射可以从反射对象获得接口值
+	convertValue := value.Interface().(float64)
+	fmt.Println(convertValue)
+
+
+	pointer := reflect.ValueOf(&num)
+	convertPointer := pointer.Interface().(*float64)//注意类型统一性
+	fmt.Println(convertPointer)
+
 }
