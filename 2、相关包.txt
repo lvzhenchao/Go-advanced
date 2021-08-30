@@ -37,6 +37,8 @@
     func NewWriter(w io.Writer) *Writer
     func NewWriterSize(w io.Writer, size int) *Writer
 
+
+
 2、OS包，大多都是和操作系统相关的
     file类是在OS包中，封装了底层的文件描述符和相关信息，同时封装了Read和Write的实现
 
@@ -83,6 +85,26 @@
             file.read()、file.write()
         关闭
             file.close()
+
+    注：
+        在所有需要io.Reader的地方，【可以传递实现了Read()方法的实例】
+            自定义方法
+            //ReadFrom 函数将 io.Reader 作为参数，也就是说，ReadFrom 可以从任意的地方读取数据，
+            只要来源实现了 io.Reader 接口。比如，我们可以从标准输入、文件、字符串等读取数据
+            func ReadFrom(reader io.Reader, num int) ([]byte, error) {
+                p := make([]byte, num)
+                n, err := reader.Read(p)
+                if n > 0 {
+                    return p[:n], nil
+                }
+                return p, err
+            }
+            //从标准输入读取
+            data, err = ReadFrom(os.Stdin, 11)
+            //从普通文件读取，其中file是os.file的实例 [func (f *File) Read(b []byte) (n int, err error) {}]
+            data, err = ReadForm(file, 9)
+            //从字符串读取
+            date, err = ReadFrom(strings.NewReader("from string"), 12)
 
 4、ioutil包
     是IO包的工具包，便于IO操作的
