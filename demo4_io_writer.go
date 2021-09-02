@@ -11,6 +11,7 @@ func main() {
 	//打开文件,注意是否有此文件
 
 	//file, err := os.Open(fileName)
+	//file, err := os.Create()
 	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, os.ModePerm)
 
 
