@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 )
@@ -19,6 +21,17 @@ func main() {
 		fmt.Println("err: ", err)
 		return
 	}
+
+	//file, err := os.Open("writeAt.txt")
+	//if err != nil {
+	//	panic(err)
+	//}
+	//defer file.Close()
+	//writer := bufio.NewWriter(os.Stdout)
+	//writer.ReadFrom(file)
+	//writer.Flush()
+
+	//ioutil.ReadFile()
 
 	//关闭文件
 	defer file.Close()
