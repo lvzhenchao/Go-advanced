@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 )
 
@@ -16,6 +17,12 @@ func main() {
 
 	//可以用defer先关闭掉，以防漏写，造成资源泄露
 	defer file.Close()
+
+	//ioutil.ReadDir()
+	ioutil.ReadFile()
+	ioutil.WriteFile()
+	ioutil.Discard()
+	ioutil.TempDir("", "go-build")
 
 	//读取数据
 	bs := make([]byte, 4, 4)
