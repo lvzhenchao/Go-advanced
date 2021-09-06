@@ -23,7 +23,7 @@ func main() {
 	p2.address = "南京"
 	fmt.Printf("姓名：%s, 年龄：%s, 性别：%d, 地址：%s\n", p2.name,p2.age,p2.sex,p2.address)
 
-	//方法3
+	//方法3  【常用】
 	p3 := Person{
 		name: "晓华",
 		age:20,
