@@ -25,8 +25,18 @@ type User struct {
 		}
 
 2、新增
+	//单条插入
 	user := User{Name: "slene"}
 	id, err := o.Insert(&user)
+
+	//多条插入 InsertMulti
+	users := []User{
+	    {Name: "slene"},
+	    {Name: "astaxie"},
+	    {Name: "unknown"},
+	    ...
+	}
+	successNums, err := o.InsertMulti(100, users)
 
 3、更新
 	user.Name = "astaxie"
@@ -35,6 +45,8 @@ type User struct {
 4、读取
 	u := User{Id: user.Id}
     err = o.Read(&u)
+
+    //尝试从数据库读取，不存在的话就创建一个 ReadOrCreate
 
 5、删除
 	num, err = o.Delete(&u)
