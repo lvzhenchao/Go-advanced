@@ -1,0 +1,44 @@
+
+
+beego ORM认识
+
+type User struct {
+    Id   int
+    Name string `orm:"size(100)"`
+}
+
+1、先实例化
+
+	创建一个 Ormer
+	o := orm.NewOrm()
+
+		// NewOrm 创建一个以数据库为default的映射对象
+		func NewOrm() Ormer {
+			BootStrap()  //NewOrm 的同时会执行 orm.BootStrap (整个 app 只执行一次)，用以验证模型之间的定义并缓存
+
+			o := new(orm)
+			err := o.Using("default")
+			if err != nil {
+				panic(err)
+			}
+			return o
+		}
+
+2、新增
+	user := User{Name: "slene"}
+	id, err := o.Insert(&user)
+
+3、更新
+	user.Name = "astaxie"
+    num, err := o.Update(&user)
+
+4、读取
+	u := User{Id: user.Id}
+    err = o.Read(&u)
+
+5、删除
+	num, err = o.Delete(&u)
+
+6、原生语句使用
+	var users []user
+	num, err := o.Raw("SELECT * FROM user").Values(&users)
