@@ -1,0 +1,32 @@
+
+orm.QuerySeter
+	查询构造器【高级查询】
+	每个返回 QuerySeter 的方法都会获得一个新的 QuerySeter 对象
+
+1、构造器建立在ORM基础之上的，可以创建可读性更强的sql相关的代码
+	o := orm.NewOrm()
+	var qs orm.QuerySeter //接口的用法二：定义一个类型为接口类型的变量，可以赋值实现类的对象
+
+		--qs = o.QueryTable(new(models.User)) //传入实例化结构体【直接使用对象作为表名】
+
+		--qs = o.QueryTable("user") //直接传入表名 user
+		
+		--qs = o.QueryTable(&User) //直接使用Model结构体作为参数
+
+	QuerySeter接口：
+		type QuerySeter interface {
+
+			Values(results *[]Params, exprs ...string) (int64, error)
+			//返回结果集的 key => value 值
+			示例：
+				var maps []orm.Params
+				num, err := o.QueryTable("user").Values(&maps)
+
+			ValuesList(results *[]ParamsList, exprs ...string) (int64, error)
+			//返回的结果集以slice存储
+			示例：
+				var lists []orm.ParamsList
+				num, err := o.QueryTable("user").ValuesList(&lists)
+
+			...看看其它方法
+		}
