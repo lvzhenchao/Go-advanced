@@ -1,0 +1,13 @@
+
+SQL语句进行查询
+	o := orm.NewOrm()
+	o.Raw()
+
+1、建立在ORM基础之上
+	o := orm.NewOrm()
+	var r RawSeter //接口的用法二：定义一个类型为接口类型的变量，可以赋值实现类的对象
+
+	RawSeter接口：
+		type RawSeter interface {
+			方法和构造器内方法大体差不多
+		}

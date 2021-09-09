@@ -1,9 +1,9 @@
 
 orm.QuerySeter
-	查询构造器【高级查询】
+	查询设置器【高级查询】
 	每个返回 QuerySeter 的方法都会获得一个新的 QuerySeter 对象
 
-1、构造器建立在ORM基础之上的，可以创建可读性更强的sql相关的代码
+1、设置器建立在ORM基础之上的，可以创建可读性更强的sql相关的代码
 	o := orm.NewOrm()
 	var qs orm.QuerySeter //接口的用法二：定义一个类型为接口类型的变量，可以赋值实现类的对象
 
