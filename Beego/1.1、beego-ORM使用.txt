@@ -26,8 +26,9 @@ type User struct {
 
 2、新增
 	//单条插入
+	//返回值为自增健 Id 的值
 	user := User{Name: "slene"}
-	id, err := o.Insert(&user)
+	id, err := o.Insert(&user)//传入的必须是一个指针类型
 
 	//多条插入 InsertMulti
 	users := []User{
@@ -39,16 +40,31 @@ type User struct {
 	successNums, err := o.InsertMulti(100, users)
 
 3、更新
-	user.Name = "astaxie"
-    num, err := o.Update(&user)
+	user := User{Id: 1}
+	if o.Read(&user) == nil {
+	    user.Name = "MyName"
+	    if num, err := o.Update(&user); err == nil {
+	        fmt.Println(num)
+	    }
+	}
+
+	//更新多个字段
+	o.Update(&user, "Field1", "Field2", ...)
+
 
 4、读取
+	// 这将通过 Id 字段查找用户
 	u := User{Id: user.Id}
     err = o.Read(&u)
+
+    //通过用户名字段找到用户 【指定的字段查询】
+    u = &User{UserName: "astaxie"}
+    err = Ormer.Read(u, "UserName")
 
     //尝试从数据库读取，不存在的话就创建一个 ReadOrCreate
 
 5、删除
+	u := &User{Id: 1}
 	num, err = o.Delete(&u)
 
 6、原生语句使用
