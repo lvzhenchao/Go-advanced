@@ -1,0 +1,40 @@
+
+构造查询更适用于复杂的查询
+	子查询和多重查询
+
+1、ORM 更适用于简单的 CRUD 操作，而 QueryBuilder 则更适用于复杂的查询
+
+	--获取QueryBuilder 对象，指定数据库驱动
+		qb, _ := orm.NewQueryBuilder("mysql") 
+			【qb = new(MySQLQueryBuilder)//这个结构体实现了QueryBuilder接口】
+			...
+
+		func NewQueryBuilder(driver string) (qb QueryBuilder, err error) {
+			if driver == "mysql" {
+				qb = new(MySQLQueryBuilder)
+			} else if driver == "tidb" {
+				qb = new(TiDBQueryBuilder)
+			} else if driver == "postgres" {
+				qb = new(PostgresQueryBuilder)
+			} else if driver == "sqlite" {
+				err = errors.New("sqlite query builder is not supported yet")
+			} else {
+				err = errors.New("unknown driver for query builder")
+			}
+			return
+		}
+
+	--构建查询对象
+		qb.Select("user.name").
+			From("user").
+			InnerJoin("profile").On("user.id_user = profile.fk_user").
+			Where("age > ?").
+			OrderBy("name").Desc().
+			Limit(10).Offset(0)
+
+	-- 导出 SQL 语句
+		sql := qb.String()
+		
+	-- 执行 SQL 语句
+		o := orm.NewOrm()
+		o.Raw(sql, 20).QueryRows(&users)
