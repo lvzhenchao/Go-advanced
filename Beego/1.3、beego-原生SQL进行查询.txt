@@ -7,7 +7,15 @@ SQL语句进行查询
 	o := orm.NewOrm()
 	var r RawSeter //接口的用法二：定义一个类型为接口类型的变量，可以赋值实现类的对象
 
+	示例：
+		o := orm.NewOrm()
+		ids := []int{1, 2, 3}
+		var r RawSter //变量类型为RawSter
+		r = o.Raw("SELECT name FROM user WHERE id IN (?, ?, ?)", ids)
+
 	RawSeter接口：
 		type RawSeter interface {
 			方法和构造器内方法大体差不多
 		}
+
+
