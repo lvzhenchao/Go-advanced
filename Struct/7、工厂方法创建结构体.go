@@ -14,14 +14,14 @@ func main() {
 	fmt.Println(wrong)
 
 	//强制使用工厂方法
-	right := NewMatrix(params) //实例化的唯一方式
+	right := NewMatrix("lzc") //实例化的唯一方式
 	fmt.Println(right)
 }
 
 type matrix struct {
 
 }
-func NewMatrix(params) *matrix {
+func NewMatrix(params interface{}) *matrix {
 	m := new(matrix) // 初始化 m
 	return m
 
