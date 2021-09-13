@@ -13,12 +13,12 @@ type Cat struct {
 func NewCatByName(name string) *Cat  {
 	return &Cat{
 		Name:name,
-	}
+	}//初始化猫的名字字段，忽略颜色字段
 }
 
 func NewCatByColor(color string) *Cat  {
 	return &Cat{
 		Color:color,
-	}
+	}//初始化猫的颜色字段，忽略名字字段
 }
 
