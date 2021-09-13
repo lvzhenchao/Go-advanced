@@ -19,8 +19,8 @@ func main() {
 	w2 := &Worker{name:"小王", age:13, sex:"女"}
 	w2.work()
 
-    w2.rest()
 	w1.rest()
+	w2.rest()
 }
 
 type Worker struct {
@@ -32,10 +32,15 @@ type Worker struct {
 
 
 //定义方法
+
+//非指针类型的接收器
+//代码运行时将接收器的值复制一份，在非指针接收器的方法中可以获取接收器的成员值，但修改后无效
 func (w Worker) work()  {
 	fmt.Println(w.name,"在工作")
 }
 
+//指针类型的接收器，更接近于面向对象中的this或者self
+//由于指针的特性，调用方法时，修改接收器指针的任意成员变量，在方法结束后，修改都是有效的
 func (p *Worker) rest()  {
 	fmt.Println(p.name,"在休息")
 }
