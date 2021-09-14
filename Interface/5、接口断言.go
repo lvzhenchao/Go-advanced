@@ -49,7 +49,7 @@ func main() {
 	getType(s1)
 
 	//指针是单独的一种类型
-	//断言是从新生成的数据，只不过数值是一样的
+	//断言是重新生成的数据，只不过数值是一样的
 
 	var t2 *Triangle = &Triangle{3,4,2}
 	fmt.Println("t2:%T, %p, %p\n", t2,&t2)
@@ -61,12 +61,12 @@ func main() {
 
 func getType2(s Shape)  {
 	switch ins := s.(type) {
-	case Triangle:
-		fmt.Println("是三角形，三条边是：", ins.a, ins.b, ins.c)
-	case Circle:
-		fmt.Println("是圆形，半径是：", ins.radius)
-	case *Triangle:
-		fmt.Println("是三角形结构体指针：", ins.a, ins.b, ins.c)
+			case Triangle:
+				fmt.Println("是三角形，三条边是：", ins.a, ins.b, ins.c)
+			case Circle:
+				fmt.Println("是圆形，半径是：", ins.radius)
+			case *Triangle:
+				fmt.Println("是三角形结构体指针：", ins.a, ins.b, ins.c)
 	}
 }
 

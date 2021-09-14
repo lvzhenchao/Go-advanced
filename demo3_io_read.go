@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
+	//"io/ioutil"
 	"os"
 )
 
@@ -19,10 +19,10 @@ func main() {
 	defer file.Close()
 
 	//ioutil.ReadDir()
-	ioutil.ReadFile()
-	ioutil.WriteFile()
-	ioutil.Discard()
-	ioutil.TempDir("", "go-build")
+	//ioutil.ReadFile()
+	//ioutil.WriteFile()
+	//ioutil.Discard()
+	//ioutil.TempDir("", "go-build")
 
 	//读取数据
 	bs := make([]byte, 4, 4)
@@ -63,6 +63,8 @@ func main() {
 	//fmt.Println(err)//EOF
 	//fmt.Println(n)//0
 
+	//data := []byte("C语言中文网")
+	//rd := bytes.NewReader(data)
 
 
 }
